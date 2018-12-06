@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'ec2-35-166-43-63.us-west-2.compute.amazonaws.com:5000/jenkins-slave'
-        }
-    }
+    agent any
     stages {
         stage('CodeCheckOut') {
             steps {
@@ -57,5 +53,5 @@ pipeline {
             }
         }
 
-      
+    }   
 }
