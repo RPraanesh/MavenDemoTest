@@ -4,8 +4,8 @@ pipeline {
         stage('CodeCheckOut') {
             steps {
                 script {
-                    env.JAVA_HOME = "${tool 'JAVA_1.8'}"
-                    env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+                    //env.JAVA_HOME = "${tool 'JAVA_1.8'}"
+                    //env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
                     checkout scm
                     def mvnHome = tool 'maven-3'
                 }
@@ -15,8 +15,8 @@ pipeline {
             steps {
                 script {
 
-                    env.JAVA_HOME = "${tool 'JAVA_1.8'}"
-                    env.JAVA_HOME = "${env.JAVA_HOME}/jdk1.8.0_141"
+                    env.JAVA = "${tool 'JAVA_1.8'}"
+                    env.JAVA_HOME = "${env.JAVA}/jdk1.8.0_141"
                     checkout scm
                     def mvnHome = tool 'maven-3'
                     try {
@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: ['RemoteCredentials']) {
-                        env.JAVA_HOME = "${tool 'JAVA_1.8'}"
-                        env.JAVA_HOME = "${env.JAVA_HOME}/jdk1.8.0_141"
+                        env.JAVA = "${tool 'JAVA_1.8'}"
+                        env.JAVA_HOME = "${env.JAVA}/jdk1.8.0_141"
                         def mvnHome = tool 'maven-3'
                         try {
                             sh "${mvnHome}/apache-maven-3.5.0/bin/mvn test"
