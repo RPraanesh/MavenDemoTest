@@ -23,7 +23,7 @@ pipeline {
                     checkout scm
                     def mvnHome = tool 'maven-3'
                     try {
-                        sh "${mvnHome}/apache-maven-3.5.0/bin/mvn clean install -U -Dmaven.test.skip=true"
+                        sh "mvn clean install -U -Dmaven.test.skip=true"
                         currentBuild.result = 'SUCCESS'
                     } catch (Exception err) {
                         currentBuild.result = 'FAILURE'
@@ -51,7 +51,7 @@ pipeline {
 								env.JAVA_HOME = "${env.JAVA}/jdk1.8.0_141"
 								def mvnHome = tool 'maven-3'
 								try {
-									sh "${mvnHome}/apache-maven-3.5.0/bin/mvn test"
+									sh "mvn test"
 									stash 'working-copy'
 									currentBuild.result = 'SUCCESS'
 									} catch (Exception err) {
